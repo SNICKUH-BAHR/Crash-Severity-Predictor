@@ -51,5 +51,5 @@ val_set, test_set = crash_data[2], crash_data[3]
 '''
 df_names = ['train', 'validate', 'test']
 for i, df in enumerate([train_set, val_set, test_set]):
-    save_df(df, df_names[i], 'data/train_test_split')
+    save_df(df, df_names[i], 'data/train_test_split_initial')
 '''
