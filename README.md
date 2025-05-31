@@ -18,7 +18,7 @@ This project uses a LightGBM model trained on over 20,000 data points using 8 se
 ## Results
 The LightGBM model made predictions for four target columns: FATAL_COUNT (regression), INJURY_COUNT (regression), TOT_INJ_COUNT (regression), MAX_SEVERITY_LEVEL (classification but treated as regression). 
 
-#### Training and Validation Loss
+### Training and Validation Loss
 
 Column             |  Train MSE    |  Validation MSE
 -------------------|---------------|----------------
@@ -32,7 +32,7 @@ MAX_SEVERITY_LEVEL |  2.171	       |  2.132
 
 **Note:** The MSE calculation for the `MAX_SEVERITY_LEVEL` output column is technically invalid, as it is a classification output. However, predictions were made using a regression model because of a class imbalance during training when using a classification model, as the model had only been exposed to 3 out of the 5 possible classes. A larger training set would have resolved, but due to time constraints, the regression output was rounded to the nearest integer as a workaround.
 
-#### Testing Loss
+### Testing Loss
 
 Column          | Test Metric
 ----------------|------------
@@ -42,7 +42,12 @@ TOT_INJ_COUNT	  |  MSE: 0.566
 MAX_SEVERITY_LEVEL | Accuracy: 4.21%
 
 > See `test_model.ipynb` for:  
-> - Confusion matrix (`MAX_SEVERITY_LEVEL`)
-> - Predicted vs. Actual plots (`FATAL_COUNT`, `INJURY_COUNT`, and `TOT_INJ_COUNT` output columns)
+> - **Confusion matrix** (`MAX_SEVERITY_LEVEL`)
+> - **Predicted vs. Actual** plots (`FATAL_COUNT`, `INJURY_COUNT`, and `TOT_INJ_COUNT` output columns)
 
 ## Discussion
+### Regression (`FATAL_COUNT`, `INJURY_COUNT`, and `TOT_INJ_COUNT`)
+Despite relatively low MSE values across training, validation, and test datasets the regression model performed poorly in practice. The **Predicted vs. Actual** plots (see `test_model.ipynb`) reveal that the model frequently predicted near-zero values, especially for the `FATAL_COUNT` column, which contained an abundance of zeros (due a low number of recorded fatalities). While this minimized the model's MSE, it failed to accurately predict any non-zero values.
+In a future iteration of this project, this problem could be addressed using a zero-inflated regressor, such as the zero-inflated Poisson model.
+### Classification (`MAX_SEVERITY_LEVEL`)
+The classification performance for the `MAX_SEVERITY_LEVEL` column  was also poor, with only **4.21% accuracy**&mdash;an expected outcome, as a regressor was used to predict classification output. A classification model was initially attempted but failed due to class imbalance&mdash; the training set only contained 3 out the 5 severity classes. As a result, the classifier was unable to handle the unseen classes encountered on the test set.
