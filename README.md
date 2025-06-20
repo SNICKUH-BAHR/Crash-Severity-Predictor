@@ -23,9 +23,9 @@ The LightGBM model made predictions for four target columns: FATAL_COUNT (regres
 Column             |  Train MSE    |  Validation MSE
 -------------------|---------------|----------------
 FATAL_COUNT	       |  0.007	       |  0.008
-INJURY_COUNT	     |  0.681	       |  0.553
-TOT_INJ_COUNT	     |  0.686	       |  0.554
-MAX_SEVERITY_LEVEL |  2.171	       |  2.133
+INJURY_COUNT	     |  0.683	       |  0.553
+TOT_INJ_COUNT	     |  0.683	       |  0.554
+MAX_SEVERITY_LEVEL |  2.173	       |  2.134
 
 > See `train_model.ipynb` for training and validation loss plots.  
 > **Note:** *The train and validation MSE will vary slightly every time the notebook code is run*.
