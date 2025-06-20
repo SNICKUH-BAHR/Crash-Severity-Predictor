@@ -24,11 +24,11 @@ Column             |  Train MSE    |  Validation MSE
 -------------------|---------------|----------------
 FATAL_COUNT	       |  0.007	       |  0.008
 INJURY_COUNT	     |  0.681	       |  0.553
-TOT_INJ_COUNT	     |  0.686	       |  0.553
-MAX_SEVERITY_LEVEL |  2.171	       |  2.132
+TOT_INJ_COUNT	     |  0.686	       |  0.554
+MAX_SEVERITY_LEVEL |  2.171	       |  2.133
 
 > See `train_model.ipynb` for training and validation loss plots.  
-> **Note:** *The train and validation MSE will vary slightly every time the notebook code is run*
+> **Note:** *The train and validation MSE will vary slightly every time the notebook code is run*.
 
 **Note:** The MSE calculation for the `MAX_SEVERITY_LEVEL` output column is technically invalid, as it is a classification output. However, predictions were made using a regression model because of a class imbalance during training when using a classification model, as the model had only been exposed to 3 out of the 5 possible classes. A larger training set would have resolved, but due to time constraints, the regression output was rounded to the nearest integer as a workaround.
 
