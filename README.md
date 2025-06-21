@@ -24,8 +24,8 @@ Column             |  Train MSE    |  Validation MSE
 -------------------|---------------|----------------
 FATAL_COUNT	       |  0.007	       |  0.008
 INJURY_COUNT	     |  0.683	       |  0.553
-TOT_INJ_COUNT	     |  0.683	       |  0.554
-MAX_SEVERITY_LEVEL |  2.173	       |  2.134
+TOT_INJ_COUNT	     |  0.681	       |  0.554
+MAX_SEVERITY_LEVEL |  2.167	       |  2.132
 
 > See `train_model.ipynb` for training and validation loss plots.  
 > **Note:** *The train and validation MSE will vary slightly every time the notebook code is run*.
@@ -36,10 +36,10 @@ MAX_SEVERITY_LEVEL |  2.173	       |  2.134
 
 Column          | Test Metric
 ----------------|------------
-FATAL_COUNT	    |  MSE: 0.007
-INJURY_COUNT	  |  MSE: 0.567
-TOT_INJ_COUNT	  |  MSE: 0.566
-MAX_SEVERITY_LEVEL | Accuracy: 4.21%
+FATAL_COUNT	    |  MSE: 0.083
+INJURY_COUNT	  |  MSE: 0.752
+TOT_INJ_COUNT	  |  MSE: 0.753
+MAX_SEVERITY_LEVEL | Accuracy: 4.09%
 
 > See `test_model.ipynb` for:  
 > - **Confusion matrix** (`MAX_SEVERITY_LEVEL`)
@@ -49,6 +49,6 @@ MAX_SEVERITY_LEVEL | Accuracy: 4.21%
 ### Regression (`FATAL_COUNT`, `INJURY_COUNT`, and `TOT_INJ_COUNT`)
 Despite relatively low MSE values across training, validation, and test datasets the regression model performed poorly in practice. The **Predicted vs. Actual** plots (see `test_model.ipynb`) reveal that the model frequently predicted near-zero values, especially for the `FATAL_COUNT` column, which contained an abundance of zeros (due a low number of recorded fatalities). While this minimized the model's MSE, it failed to accurately predict any non-zero values. In a future iteration of this project, this problem could be addressed using a zero-inflated regressor, such as the zero-inflated Poisson model.
 ### Classification (`MAX_SEVERITY_LEVEL`)
-The classification performance for the `MAX_SEVERITY_LEVEL` column was also poor, with only **4.21% accuracy**&mdash;an expected outcome, as a regressor was used to predict classification output. A classification model was initially attempted but failed due to class imbalance&mdash;the training set only contained 3 out the 5 severity classes. As a result, the classifier was unable to handle the unseen classes encountered on the test set. Imprvoing this outcome in the future would involve expanding the training set to include all 5 classes or applying resampling techniques to mitigate the class imbalance.
+The classification performance for the `MAX_SEVERITY_LEVEL` column was also poor, with only **4.09% accuracy**&mdash;an expected outcome, as a regressor was used to predict classification output. A classification model was initially attempted but failed due to class imbalance&mdash;the training set only contained 3 out the 5 severity classes. As a result, the classifier was unable to handle the unseen classes encountered on the test set. Imprvoing this outcome in the future would involve expanding the training set to include all 5 classes or applying resampling techniques to mitigate the class imbalance.
 
 
