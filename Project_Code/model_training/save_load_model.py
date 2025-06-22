@@ -1,4 +1,3 @@
-import lightgbm as lgb
 import json
 import joblib as jl
 import os
@@ -20,4 +19,4 @@ def load_lgb_model(fname, location):
         model = jl.load(pth)
         return model
     else:
-        print("Failed to load model.")
+        raise FileNotFoundError(f"Failed to load model: {fname}")
