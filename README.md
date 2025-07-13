@@ -9,7 +9,7 @@ To install required libraries, run:
 
 ## Project Summary
 This project uses a LightGBM model trained on 20,000+ data points using 8 selected features to predict crash outcomes, including the number of casualties and accident severity. This involved:
-- Selecting a ~40,000-point subset from a ~240,000-point dataset spanning from the years <a href=https://catalog.data.gov/dataset/allegheny-county-crash-data>2004 - 2021</a>
+- Selecting about 40,000 points from an approximately 240,000-point dataset spanning the years <a href=https://catalog.data.gov/dataset/allegheny-county-crash-data>2004 - 2021</a>
 - Cleaning the data and splitting it into training, validation, and testing sets
 - Identifying impactful features using feature importance: `VEHICLE_COUNT`, `PED_COUNT`, `COLLISION_TYPE`, `CRASH_MONTH`, `DEC_LAT`, `DEC_LONG`, `TIME_OF_DAY`, `WEATHER`
 - Training and validating a LightGBM model
